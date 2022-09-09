@@ -39,7 +39,21 @@ namespace RestSharpTest
 
         }
 
-       
+        [TestMethod]
+        public void OnCallingList_ReturnEmployeeList()
+        {
+            IRestResponse response = getEmployeeList();
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+            List<Employee> dataResponse = JsonConvert.DeserializeObject<List<Employee>>(response.Content);
+            // Assert.AreEqual(3, dataResponse.Count);
+            foreach (Employee e in dataResponse)
+            {
+                Console.WriteLine("id : " + e.id + "Name: " + e.name + "salary : " + e.salary);
+
+            }
+        }
 
 
-}
+
+
+    }
